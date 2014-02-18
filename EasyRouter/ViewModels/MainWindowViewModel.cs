@@ -1,0 +1,91 @@
+﻿using EasyRouter.Models;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Net;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+
+namespace EasyRouter.ViewModels
+{
+    class MainWindowViewModel : INotifyPropertyChanged
+    {
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private object _currentViewModel;
+
+        private IPAddress _currentConnectedIPAddress;
+        private Router _currentConnectedRouter;
+
+        public MainWindowViewModel()
+        {
+            StartUp();
+        }
+
+        private void StartUp()
+        {
+            CurrentViewModel = new LoadingViewModel();
+
+            NetworkInfo info = new NetworkInfo();
+            info.NetworkAdaptersChanged += info_NetworkAdaptersChanged;
+            info_NetworkAdaptersChanged(info, new EventArgs());
+        }
+
+        private void info_NetworkAdaptersChanged(object sender, EventArgs e)
+        {
+            Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    NetworkInfo info = (NetworkInfo)sender;
+                    IEnumerable<NetworkAdapter> netAdapters = info.GetNetworkAdapters();
+
+                    if (netAdapters.Count() > 0)
+                    {
+                        IPAddress ipAddr = netAdapters.First().GetGatewayAddress();
+                        Router router = RouterFactory.GetRouter(ipAddr);
+
+                        if (
+                            ipAddr != _currentConnectedIPAddress ||
+                            router.GetType() != _currentConnectedRouter.GetType())
+                        {
+                            CurrentViewModel = new ConnectingViewModel(router);
+
+                            _currentConnectedIPAddress = ipAddr;
+                            _currentConnectedRouter = router;
+                        }
+                    }
+                    else
+                    {
+                        CurrentViewModel = new LoadingViewModel();
+                    }
+                }), null);
+        }
+
+
+        public object CurrentViewModel
+        {
+            get
+            {
+                return _currentViewModel;
+            }
+
+            private set
+            {
+                if (_currentViewModel != value)
+                {
+                    _currentViewModel = value;
+                    OnPropertyChanged("CurrentViewModel");
+                }
+            }
+        }
+
+        private void OnPropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+}
