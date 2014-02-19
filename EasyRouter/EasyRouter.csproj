@@ -53,18 +53,36 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ViewModels\ConnectingViewModel.cs" />
+    <Compile Include="ViewModels\AdvancedConfigurationViewModel.cs" />
+    <Compile Include="ViewModels\DelegateCommand.cs" />
+    <Compile Include="ViewModels\QuickSetupDoneViewModel.cs" />
+    <Compile Include="ViewModels\RouterConfigHomeViewModel.cs" />
+    <Compile Include="ViewModels\RouterConfigViewModel.cs" />
     <Compile Include="ViewModels\LoadingViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
-    <Compile Include="ViewModels\RouterControlViewModel.cs" />
-    <Compile Include="Views\Connecting.xaml.cs">
-      <DependentUpon>Connecting.xaml</DependentUpon>
+    <Compile Include="ViewModels\SetNetworkNameViewModel.cs" />
+    <Compile Include="ViewModels\SetNetworkPasswordViewModel.cs" />
+    <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Compile Include="Views\AdvancedConfiguration.xaml.cs">
+      <DependentUpon>AdvancedConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\QuickSetupDone.xaml.cs">
+      <DependentUpon>QuickSetupDone.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RouterConfig.xaml.cs">
+      <DependentUpon>RouterConfig.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Loading.xaml.cs">
       <DependentUpon>Loading.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\RouterControl.xaml.cs">
-      <DependentUpon>RouterControl.xaml</DependentUpon>
+    <Compile Include="Views\RouterConfigHome.xaml.cs">
+      <DependentUpon>RouterConfigHome.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SetNetworkName.xaml.cs">
+      <DependentUpon>SetNetworkName.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SetNetworkPassword.xaml.cs">
+      <DependentUpon>SetNetworkPassword.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -78,7 +96,15 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\Connecting.xaml">
+    <Page Include="Views\AdvancedConfiguration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\QuickSetupDone.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RouterConfig.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -86,7 +112,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\RouterControl.xaml">
+    <Page Include="Views\RouterConfigHome.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SetNetworkName.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SetNetworkPassword.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -124,9 +158,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Content\C1000A-1.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Content\WRT54G2_Photo01.jpg" />
   </ItemGroup>
   <ItemGroup>
@@ -136,6 +167,24 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Content\PhoneTop.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Content\EasyRouter2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Content\EasyRouterLogo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Content\C1000A-12.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Content\Arrow.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Content\EasyRouter8Bottom.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Content\EasyRouter8Top.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

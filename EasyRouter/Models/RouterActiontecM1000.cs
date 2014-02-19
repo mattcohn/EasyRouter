@@ -1,17 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace EasyRouter.Models
 {
     public class RouterActiontecM1000 : Router
     {
+        private string _ssid;
+        private string _password;
         public RouterActiontecM1000(string requestUriString)
             : base(requestUriString)
         {
+            _ssid = "";
+            _password = "";
         }
 
         public override string Model
@@ -21,7 +27,7 @@ namespace EasyRouter.Models
 
         public override string ImageFilename
         {
-            get { return "C1000A-1.jpg"; }
+            get { return "C1000A-12.jpg"; }
         }
 
         public override void Logon()
@@ -51,6 +57,8 @@ namespace EasyRouter.Models
                     new Tuple<string, string>("wlSsid_wl0v0", ssid),
                     new Tuple<string, string>("needthankyou", "0") }
             );
+
+            _ssid = ssid;
         }
 
         public override void ChangeWifiPassword(string password)
@@ -77,6 +85,18 @@ namespace EasyRouter.Models
                     new Tuple<string, string>("wlDefaultKeyPsk3", "22gcn6ye2ans72"),
                     new Tuple<string, string>("needthankyou", "0")
                 });
+
+            _password = password;
+        }
+
+        public override string GetSSID()
+        {
+            return _ssid;
+        }
+
+        public override string GetWifiPassword()
+        {
+            return _password;
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EasyRouter.ViewModels
 {
-    class LoadingViewModel
+    class LoadingViewModel : ViewModelBase
     {
     }
 }

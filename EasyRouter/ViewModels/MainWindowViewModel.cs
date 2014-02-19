@@ -10,10 +10,8 @@ using System.Windows;
 
 namespace EasyRouter.ViewModels
 {
-    class MainWindowViewModel : INotifyPropertyChanged
+    class MainWindowViewModel : ViewModelBase
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-
         private object _currentViewModel;
 
         private IPAddress _currentConnectedIPAddress;
@@ -46,10 +44,11 @@ namespace EasyRouter.ViewModels
                         Router router = RouterFactory.GetRouter(ipAddr);
 
                         if (
-                            ipAddr != _currentConnectedIPAddress ||
-                            router.GetType() != _currentConnectedRouter.GetType())
+                            router != null &&
+                            (ipAddr != _currentConnectedIPAddress ||
+                             router.GetType() != _currentConnectedRouter.GetType()))
                         {
-                            CurrentViewModel = new ConnectingViewModel(router);
+                            CurrentViewModel = new RouterConfigViewModel(router);
 
                             _currentConnectedIPAddress = ipAddr;
                             _currentConnectedRouter = router;
@@ -77,14 +76,6 @@ namespace EasyRouter.ViewModels
                     _currentViewModel = value;
                     OnPropertyChanged("CurrentViewModel");
                 }
-            }
-        }
-
-        private void OnPropertyChanged(string propertyName)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
     }

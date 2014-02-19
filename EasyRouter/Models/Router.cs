@@ -22,7 +22,9 @@ namespace EasyRouter.Models
 
         public abstract void Logon();
         public abstract void ChangeSSID(string ssid);
+        public abstract string GetSSID();
         public abstract void ChangeWifiPassword(string password);
+        public abstract string GetWifiPassword();
 
         protected void SendToRouter(string path, IEnumerable<Tuple<string, string>> headers, IEnumerable<Tuple<string, string>> formData)
         {

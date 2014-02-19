@@ -14,7 +14,6 @@ namespace EasyRouter.Models
         public NetworkInfo()
         {
             NetworkChange.NetworkAddressChanged += OnChange;
-            NetworkChange.NetworkAvailabilityChanged += OnChange;
         }
 
         private void OnChange(object sender, EventArgs e)

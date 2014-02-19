@@ -4,9 +4,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="606" d:DesignWidth="404">
     <Grid>
-        <Label Content="Easy Router" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="36"/>
-
+        <Image Source="/Content/EasyRouter2.jpg" />
+        <ProgressBar Height="15" Width="200" IsIndeterminate="True" Background="White" Margin="0,158,0,118"  />
+        <TextBlock Text="Searching for router..." HorizontalAlignment="Center" Margin="0,341,0,-341.6" FontSize="14" />
     </Grid>
 </UserControl>

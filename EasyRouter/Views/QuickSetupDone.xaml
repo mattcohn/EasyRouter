@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="EasyRouter.Views.QuickSetupDone"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="314" d:DesignWidth="404">
+    <StackPanel>
+        <TextBlock HorizontalAlignment="Center" FontSize="24">
+            CONGRATS!<LineBreak />
+            <LineBreak />
+            You're done.<LineBreak />
+            <LineBreak />
+            Unplug the adapter<LineBreak />
+            and keep it handy.
+            
+            Enjoy
+        </TextBlock>
+        <Button Command="{Binding Path=NextCommand}" HorizontalAlignment="Right" Background="White" Margin="20" BorderBrush="White">
+            <Image Source="/Content/Arrow.jpg" Width="81" Height="35" />
+        </Button>
+
+    </StackPanel>
+</UserControl>
