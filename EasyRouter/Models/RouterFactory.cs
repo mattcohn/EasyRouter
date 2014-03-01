@@ -21,38 +21,45 @@ namespace EasyRouter.Models
             // Set up router factories
             _routerFactories = new List<Tuple<Func<string, bool>, Func<string, Router>>>();
             _routerFactories.Add(new Tuple<Func<string, bool>, Func<string, Router>>(
-                (html) => html.Contains("Actiontec M1000") || html.Contains("C2000A"),
-                (ipaddr) =>
-                {
-                    Router router = new RouterActiontecM1000(ipaddr);
-                    router.Logon();
-                    return router;
-                }));
+                (html) => html.Contains("Actiontec M1000"),
+                (ipaddr) => new RouterActiontecM1000(ipaddr)));
+
+            _routerFactories.Add(new Tuple<Func<string, bool>, Func<string, Router>>(
+                (html) => html.Contains("WRT54G2"),
+                (ipaddr) => new RouterLinksysWRT54G2(ipaddr)));
         }
 
-        public static Router GetRouter(IPAddress address)
+        public Router GetRouter(IPAddress address)
         {
-            return GetRouterHttps(address) ?? GetRouterHttp(address);
+            return GetRouterHttp(address) ?? GetRouterHttps(address);
         }
 
-        private static Router GetRouterHttp(IPAddress address)
+        private Router GetRouterHttp(IPAddress address)
         {
-            return GetRouter(string.Format("http://{0}/", address.ToString()));
+            return GetRouter(string.Format("http://{0}", address.ToString()));
         }
 
-        private static Router GetRouterHttps(IPAddress address)
+        private Router GetRouterHttps(IPAddress address)
         {
-            return GetRouter(string.Format("https://{0}/", address.ToString()));
+            return GetRouter(string.Format("https://{0}", address.ToString()));
         }
 
-        private static Router GetRouter(string address)
+        private Router GetRouter(string address)
         {
             HttpWebRequest req = WebRequest.CreateHttp(address);
+            string respText = "";
+            try
+            {
+                WebResponse resp = req.GetResponse();
 
-            WebResponse resp = req.GetResponse();
-            Stream respStream = resp.GetResponseStream();
-            string respText = (new StreamReader(respStream)).ReadToEnd();
-
+                Stream respStream = resp.GetResponseStream();
+                respText = (new StreamReader(respStream)).ReadToEnd();
+            }
+            catch (WebException ex)
+            {
+                if(ex.Message.Contains("401")) 
+                    respText = ex.Response.Headers["WWW-Authenticate"];
+            }
             // Get first router factory that works
             var routerfactory = _routerFactories.FirstOrDefault((routerfact) => routerfact.Item1(respText));
 
