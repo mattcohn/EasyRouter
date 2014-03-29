@@ -53,6 +53,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\RouterLinksysWRT54G2.cs" />
     <Compile Include="ViewModels\AdvancedConfigurationViewModel.cs" />
     <Compile Include="ViewModels\DelegateCommand.cs" />
     <Compile Include="ViewModels\QuickSetupDoneViewModel.cs" />

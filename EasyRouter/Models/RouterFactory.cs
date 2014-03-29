@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace EasyRouter.Models
 {
-    public class RouterFactory
+    public static class RouterFactory
     {
         static List<Tuple<Func<string, bool>, Func<string, Router>>> _routerFactories;
 
@@ -29,22 +29,22 @@ namespace EasyRouter.Models
                 (ipaddr) => new RouterLinksysWRT54G2(ipaddr)));
         }
 
-        public Router GetRouter(IPAddress address)
+        public static Router GetRouter(IPAddress address)
         {
             return GetRouterHttp(address) ?? GetRouterHttps(address);
         }
 
-        private Router GetRouterHttp(IPAddress address)
+        private static Router GetRouterHttp(IPAddress address)
         {
             return GetRouter(string.Format("http://{0}", address.ToString()));
         }
 
-        private Router GetRouterHttps(IPAddress address)
+        private static Router GetRouterHttps(IPAddress address)
         {
             return GetRouter(string.Format("https://{0}", address.ToString()));
         }
 
-        private Router GetRouter(string address)
+        private static Router GetRouter(string address)
         {
             HttpWebRequest req = WebRequest.CreateHttp(address);
             string respText = "";

@@ -53,7 +53,7 @@ namespace EasyRouter.Models
             }
         }
 
-        private byte[] GetFormData(IEnumerable<Tuple<string, string>> formData)
+        protected byte[] GetFormData(IEnumerable<Tuple<string, string>> formData)
         {
             StringBuilder builder = new StringBuilder();
             foreach (Tuple<string, string> singleFormData in formData)
