@@ -68,7 +68,7 @@ namespace EasyRouter.Tests
 
         private Router GetRouter()
         {
-            return new RouterLinksysWRT54G2("http://192.168.1.1/");
+            return new RouterLinksysWRT54G2("http://192.168.1.1");
         }
     }
 }

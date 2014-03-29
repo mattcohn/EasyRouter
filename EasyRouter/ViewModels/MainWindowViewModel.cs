@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Net;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -36,11 +37,15 @@ namespace EasyRouter.ViewModels
             Application.Current.Dispatcher.BeginInvoke(new Action(() =>
                 {
                     NetworkInfo info = (NetworkInfo)sender;
-                    IEnumerable<NetworkAdapter> netAdapters = info.GetNetworkAdapters();
+                    //IEnumerable<NetworkAdapter> netAdapters = info.GetNetworkAdapters();
+                    IEnumerable<NetworkInterface> netAdapters = NetworkInterface.GetAllNetworkInterfaces();
+
+                    GatewayIPAddressInformation g = netAdapters.First().GetIPProperties().GatewayAddresses.Last();
+                    
 
                     if (netAdapters.Count() > 0)
                     {
-                        IPAddress ipAddr = netAdapters.First().GetGatewayAddress();
+                        IPAddress ipAddr = g.Address; //netAdapters.First().GetGatewayAddress();
                         Router router = RouterFactory.GetRouter(ipAddr);
 
                         if (
