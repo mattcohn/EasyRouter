@@ -28,7 +28,7 @@ namespace EasyRouter.Models
 
         public override string ImageFilename
         {
-            get { return "C1000A-12.jpg"; }
+            get { return "WRT54G2.jpg"; }
         }
 
 

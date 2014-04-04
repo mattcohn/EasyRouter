@@ -159,7 +159,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Content\WRT54G2_Photo01.jpg" />
+    <Resource Include="Content\WRT54G2.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Content\PhoneBottom.bmp" />

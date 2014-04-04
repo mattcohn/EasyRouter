@@ -45,7 +45,7 @@ namespace EasyRouter.ViewModels
 
                     if (netAdapters.Count() > 0)
                     {
-                        IPAddress ipAddr = g.Address; //netAdapters.First().GetGatewayAddress();
+                        IPAddress ipAddr = g.Address; 
                         Router router = RouterFactory.GetRouter(ipAddr);
 
                         if (
