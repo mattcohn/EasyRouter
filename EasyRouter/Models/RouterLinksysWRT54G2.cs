@@ -93,9 +93,6 @@ namespace EasyRouter.Models
             SendToRouter("WBasic.tri", "POST",
 
                 new List<Tuple<string, string>> {
-                    //new Tuple<string, string>("Authorization", "Basic YWRtaW46am9wZW5zb3VyY2U0"),
-                    //new Tuple<string, string>("Accept", "text/html, application/xhtml+xml"),
-                    //new Tuple<string, string>("Referer", "192.168.1.1/wireless.html"),
                     new Tuple<string, string>("Authorization", "Basic OmFkbWlu")
                  },
 
@@ -114,7 +111,6 @@ namespace EasyRouter.Models
             );
         }
 
-        //SecurityMode=3&CipherType=1&PassPhrase=madronarocks&GkuInterval=3600&layout=en
 
         public override void ChangeWifiPassword(string password)
         {
