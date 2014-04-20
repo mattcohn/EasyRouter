@@ -43,6 +43,11 @@ namespace EasyRouter.Models
             );
         }
 
+        public override void Reset()
+        {
+            throw new NotImplementedException();
+        }
+
         protected void SendToRouter(string path, string httpVerb, IEnumerable<Tuple<string, string>> headers, IEnumerable<Tuple<string, string>> formData)
         {
             if (path.Length > 1 && !path.Substring(0, 1).Equals("/") ) path = "/" + path; // prepend leading / in url path

@@ -30,6 +30,11 @@ namespace EasyRouter.Models
             get { return "C1000A-12.jpg"; }
         }
 
+        public override void Reset()
+        {
+            throw new NotImplementedException();
+        }
+
         public override void Logon()
         {
             SendToRouter("login.cgi",

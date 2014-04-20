@@ -40,6 +40,16 @@ namespace EasyRouter.Tests
         }
 
         [TestMethod]
+        public void ResetRouter()
+        {
+            Router router = GetRouter();
+
+            router.Logon();
+            router.Reset();
+        }
+
+
+        [TestMethod]
         public void ChangeSSID_pony()
         {
             Router router = GetRouter();

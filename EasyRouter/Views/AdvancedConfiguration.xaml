@@ -12,5 +12,6 @@
         <TextBlock FontSize="16">WiFi Password:</TextBlock>
         <TextBox Text="{Binding Path=NetworkPassword, Mode=OneWay}"  Padding="3" Margin="5" Background="Orange" FontSize="20" />
         <Image Source="/content/EasyRouter8Bottom.jpg" />
+        <Button  Command="{Binding Path=NextCommand}" />
     </StackPanel>
 </UserControl>

@@ -84,6 +84,11 @@ namespace EasyRouter.ViewModels
             _router.ChangeSSID(networkName);
         }
 
+        private void ResetRouter()
+        {
+            _router.Reset();
+        }
+
         private string GetNetworkName()
         {
             return _router.GetSSID();
