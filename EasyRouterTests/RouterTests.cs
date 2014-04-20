@@ -14,7 +14,7 @@ namespace EasyRouter.Tests
         [TestMethod]
         public void ConnectTo_192_168_0_1()
         {
-            Router rout = RouterFactory.GetRouter(new System.Net.IPAddress(new byte[] { 192, 168, 1, 1 }));
+            Router rout = RouterFactory.GetRouter(new System.Net.IPAddress(new byte[] { 10, 0, 0, 1 }));
         }
 
         public void ConnectTo_192_168_1_1()
@@ -68,7 +68,7 @@ namespace EasyRouter.Tests
 
         private Router GetRouter()
         {
-            return new RouterLinksysWRT54G2("http://192.168.1.1");
+            return new RouterTechnicolorTC8305C("http://10.0.0.1");
         }
     }
 }

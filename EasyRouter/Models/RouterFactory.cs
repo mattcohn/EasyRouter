@@ -27,6 +27,10 @@ namespace EasyRouter.Models
             _routerFactories.Add(new Tuple<Func<string, bool>, Func<string, Router>>(
                 (html) => html.Contains("WRT54G2"),
                 (ipaddr) => new RouterLinksysWRT54G2(ipaddr)));
+
+            _routerFactories.Add(new Tuple<Func<string, bool>, Func<string, Router>>(
+                (html) => html.Contains("comcast.com"),
+                (ipaddr) => new RouterTechnicolorTC8305C(ipaddr)));
         }
 
         public static Router GetRouter(IPAddress address)

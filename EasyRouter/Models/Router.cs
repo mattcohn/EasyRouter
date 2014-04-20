@@ -30,7 +30,7 @@ namespace EasyRouter.Models
         {
             HttpWebRequest hwr = WebRequest.CreateHttp(_requestUriString + path);
             hwr.Method = "POST";
-            hwr.ContentType = "application/x-www-form-urlencode";
+            hwr.ContentType = "application/x-www-form-urlencoded";
 
             foreach (Tuple<string, string> header in headers)
             {
@@ -51,6 +51,7 @@ namespace EasyRouter.Models
                 StreamReader reader = new StreamReader(stream);
                 string responseString = reader.ReadToEnd();
             }
+
         }
 
         protected byte[] GetFormData(IEnumerable<Tuple<string, string>> formData)

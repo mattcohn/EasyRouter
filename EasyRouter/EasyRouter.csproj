@@ -53,6 +53,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\RouterTechnicolorTC8305C.cs" />
     <Compile Include="Models\RouterLinksysWRT54G2.cs" />
     <Compile Include="ViewModels\AdvancedConfigurationViewModel.cs" />
     <Compile Include="ViewModels\DelegateCommand.cs" />
@@ -186,6 +187,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Content\EasyRouter8Top.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Content\TechnicolorTC8305C.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
