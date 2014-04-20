@@ -21,6 +21,7 @@ namespace EasyRouter.Models
         public abstract string ImageFilename { get; } 
 
         public abstract void Logon();
+        public abstract void Reset();
         public abstract void ChangeSSID(string ssid);
         public abstract string GetSSID();
         public abstract void ChangeWifiPassword(string password);
