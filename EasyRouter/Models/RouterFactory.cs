@@ -17,7 +17,7 @@ namespace EasyRouter.Models
             // Trust all certificates
             System.Net.ServicePointManager.ServerCertificateValidationCallback =
                 ((sender, certificate, chain, sslPolicyErrors) => true);
-
+            
             // Set up router factories
             _routerFactories = new List<Tuple<Func<string, bool>, Func<string, Router>>>();
             _routerFactories.Add(new Tuple<Func<string, bool>, Func<string, Router>>(
@@ -27,6 +27,10 @@ namespace EasyRouter.Models
             _routerFactories.Add(new Tuple<Func<string, bool>, Func<string, Router>>(
                 (html) => html.Contains("WRT54G2"),
                 (ipaddr) => new RouterLinksysWRT54G2(ipaddr)));
+
+            _routerFactories.Add(new Tuple<Func<string, bool>, Func<string, Router>>(
+                (html) => html.ToLower().Contains("dd-wrt"),
+                (ipaddr) => new RouterDDWRT(ipaddr)));
 
             _routerFactories.Add(new Tuple<Func<string, bool>, Func<string, Router>>(
                 (html) => html.Contains("comcast.com"),

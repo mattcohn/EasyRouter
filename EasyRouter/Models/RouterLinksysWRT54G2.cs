@@ -114,6 +114,8 @@ namespace EasyRouter.Models
                     new Tuple<string, string>("wl_closed", "1"),
                     new Tuple<string, string>("layout", "en") }
             );
+
+            _ssid = ssid;
         }
 
 

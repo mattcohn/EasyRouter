@@ -78,7 +78,7 @@ namespace EasyRouter.Tests
 
         private Router GetRouter()
         {
-            return new RouterTechnicolorTC8305C("http://10.0.0.1");
+            return new RouterDDWRT("http://192.168.1.1");
         }
     }
 }

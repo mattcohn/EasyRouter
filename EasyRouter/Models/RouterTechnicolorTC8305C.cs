@@ -16,8 +16,8 @@ namespace EasyRouter.Models
         public RouterTechnicolorTC8305C(string requestUriString)
             : base(requestUriString)
         {
-            _ssid = "trestle";
-            _password = "password";
+            _ssid = "";
+            _password = "";
         }
 
         public override string Model
