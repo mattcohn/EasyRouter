@@ -38,28 +38,50 @@ namespace EasyRouter.ViewModels
                 {
                     NetworkInfo info = (NetworkInfo)sender;
                     IEnumerable<NetworkAdapter> netAdapters = info.GetNetworkAdapters();
-                    //IEnumerable<NetworkInterface> netAdapters = NetworkInterface.GetAllNetworkInterfaces();
+                    IEnumerable<NetworkInterface> altNetAdapters = NetworkInterface.GetAllNetworkInterfaces();
                     //netAdapters.First().GetGatewayAddress();
-                    //GatewayIPAddressInformation g = netAdapters.First().GetIPProperties().GatewayAddresses.Last();
+                    GatewayIPAddressInformation g = altNetAdapters.First().GetIPProperties().GatewayAddresses.Last();
                     
 
-                    if (netAdapters.Count() > 0)
+                    if (netAdapters.Count() > 0 || g != null)
                     {
-                        foreach (NetworkAdapter adapter in netAdapters)
+                        IPAddress ipAddr = null;
+                        Router router = null;
+                        if (g != null)
                         {
-                            IPAddress ipAddr = adapter.GetGatewayAddress();
-                            //IPAddress ipAddr = g.Address;
-                            Router router = RouterFactory.GetRouter(ipAddr);
+                            ipAddr = g.Address;
+                            router = RouterFactory.GetRouter(ipAddr);
+                        }
 
-                            if (
-                                router != null &&
-                                (ipAddr != _currentConnectedIPAddress ||
-                                 router.GetType() != _currentConnectedRouter.GetType()))
+                        if (
+                            router != null &&
+                            (ipAddr != _currentConnectedIPAddress ||
+                             router.GetType() != _currentConnectedRouter.GetType()))
+                        {
+                            CurrentViewModel = new RouterConfigViewModel(router);
+
+                            _currentConnectedIPAddress = ipAddr;
+                            _currentConnectedRouter = router;
+                        }
+
+                        else
+                        {
+                            foreach (NetworkAdapter adapter in netAdapters)
                             {
-                                CurrentViewModel = new RouterConfigViewModel(router);
+                                ipAddr = adapter.GetGatewayAddress();
 
-                                _currentConnectedIPAddress = ipAddr;
-                                _currentConnectedRouter = router;
+                                router = RouterFactory.GetRouter(ipAddr);
+
+                                if (
+                                    router != null &&
+                                    (ipAddr != _currentConnectedIPAddress ||
+                                     router.GetType() != _currentConnectedRouter.GetType()))
+                                {
+                                    CurrentViewModel = new RouterConfigViewModel(router);
+
+                                    _currentConnectedIPAddress = ipAddr;
+                                    _currentConnectedRouter = router;
+                                }
                             }
                         }
                     }

@@ -1,37 +1,28 @@
-﻿using System;
+﻿using EasyRouter.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace EasyRouter.ViewModels
 {
     class AdvancedConfigurationViewModel : ViewModelBase
     {
-        private string _networkName;
-        private string _networkPassword;
-        public AdvancedConfigurationViewModel(
-            Func<string> getNetworkName,
-            Func<string> getNetworkPassword)
+        private Action
+            _resetAction;
+
+        public AdvancedConfigurationViewModel(Action resetAction)
         {
-            _networkName = getNetworkName();
-            _networkPassword = getNetworkPassword();
+            _resetAction = resetAction;
         }
 
-        public string NetworkName
+        public ICommand ResetCommand
         {
             get
             {
-                return _networkName;
-            }
-        }
-
-
-        public string NetworkPassword
-        {
-            get
-            {
-                return _networkPassword;
+                return new DelegateCommand(new Action<object>((sender) => _resetAction()));
             }
         }
     }

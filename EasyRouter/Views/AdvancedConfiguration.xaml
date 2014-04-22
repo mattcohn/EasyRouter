@@ -11,7 +11,6 @@
         <TextBox Text="{Binding Path=NetworkName, Mode=OneWay}"  Padding="3" Margin="5" Background="Orange" FontSize="20" />
         <TextBlock FontSize="16">WiFi Password:</TextBlock>
         <TextBox Text="{Binding Path=NetworkPassword, Mode=OneWay}"  Padding="3" Margin="5" Background="Orange" FontSize="20" />
-        <Image Source="/content/EasyRouter8Bottom.jpg" />
-        <Button  Command="{Binding Path=NextCommand}" />
+        <Button Command="{Binding Path=ResetCommand}" Margin="30,10,226,10" Height="50" Content="Reset Router" FontSize="20" Background="Orange" />
     </StackPanel>
 </UserControl>

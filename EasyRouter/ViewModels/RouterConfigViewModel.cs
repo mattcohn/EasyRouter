@@ -29,6 +29,14 @@ namespace EasyRouter.ViewModels
                 OnGetHelp);
         }
 
+        private void SetContentToConfigAdvancedViewModel()
+        {
+            ContentViewModel = new RouterConfigHomeViewModel(
+                OnQuickSetup,
+                OnAdvancedConfig,
+                OnGetHelp);
+        }
+
         private void OnGetHelp()
         {
             // NOT IMPLEMENTED but don't crash the demo!
@@ -38,9 +46,14 @@ namespace EasyRouter.ViewModels
         private void OnAdvancedConfig()
         {
             ContentViewModel = new AdvancedConfigurationViewModel(
-                GetNetworkName,
-                GetNetworkPassword);
+                OnReset);
         }
+
+        private void OnReset()
+        {
+            ResetRouter();
+        }
+
 
         private void OnQuickSetup()
         {

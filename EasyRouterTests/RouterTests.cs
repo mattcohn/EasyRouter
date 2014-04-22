@@ -40,7 +40,7 @@ namespace EasyRouter.Tests
         }
 
         [TestMethod]
-        public void ResetRouter()
+        public void ResetTheRouter()
         {
             Router router = GetRouter();
 
