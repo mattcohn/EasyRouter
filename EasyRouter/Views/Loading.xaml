@@ -6,7 +6,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="606" d:DesignWidth="404">
     <Grid>
-        <Image Source="/Content/EasyRouter2.jpg" />
+        <Image VerticalAlignment="Top" Source="/Content/EasyRouterLogo.jpg" />
         <ProgressBar Height="15" Width="200" IsIndeterminate="True" Background="White" Margin="0,158,0,118"  />
         <TextBlock Text="Searching for router..." HorizontalAlignment="Center" Margin="0,341,0,-341.6" FontSize="14" />
     </Grid>

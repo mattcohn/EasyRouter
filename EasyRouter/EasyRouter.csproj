@@ -172,9 +172,6 @@
     <Resource Include="Content\PhoneTop.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Content\EasyRouter2.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Content\EasyRouterLogo.jpg" />
   </ItemGroup>
   <ItemGroup>

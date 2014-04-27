@@ -40,7 +40,10 @@ namespace EasyRouter.ViewModels
                     IEnumerable<NetworkAdapter> netAdapters = info.GetNetworkAdapters();
                     IEnumerable<NetworkInterface> altNetAdapters = NetworkInterface.GetAllNetworkInterfaces();
                     //netAdapters.First().GetGatewayAddress();
-                    GatewayIPAddressInformation g = altNetAdapters.First().GetIPProperties().GatewayAddresses.Last();
+                    var altNetAdaptersWorking = from adapter in altNetAdapters 
+                                                where adapter.OperationalStatus == System.Net.NetworkInformation.OperationalStatus.Up 
+                                                select adapter;
+                    GatewayIPAddressInformation g = altNetAdaptersWorking.First().GetIPProperties().GatewayAddresses.Last();
                     
 
                     if (netAdapters.Count() > 0 || g != null)

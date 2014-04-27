@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:localViews="clr-namespace:EasyRouter.Views"
         xmlns:localViewModels="clr-namespace:EasyRouter.ViewModels"
-        Title="MainWindow" Height="850" Width="500">
+        Title="Trestle.App" Height="1920" Width="1080" Background="DimGray">
     <Window.Resources>
         <DataTemplate DataType="{x:Type localViewModels:LoadingViewModel}">
             <localViews:Loading DataContext="{Binding}" />
@@ -24,7 +24,7 @@
     
     
     
-    <Grid>
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Background="White">
         <StackPanel>
             <Image HorizontalAlignment="Left" Height="176px" Width="500px" Source="Content/PhoneTop.jpg" />
             <Grid Height="606px">
