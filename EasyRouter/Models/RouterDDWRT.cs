@@ -28,7 +28,7 @@ namespace EasyRouter.Models
 
         public override string ImageFilename
         {
-            get { return "WRT54G2.jpg"; }
+            get { return "WRT54G.jpg"; }
         }
 
 
@@ -99,46 +99,17 @@ namespace EasyRouter.Models
         }
         */
 
-        public override void ChangeSSID(string ssid)
+        public void SetSSIDAndPassword(string ssid, string password)
         {
-            SendToRouter("/apply.cgi", 
-
-                new List<Tuple<string, string>> {
-                    new Tuple<string, string>("Authorization", "Basic cm9vdDphZG1pbg==")
-                 },
-
-                new List<Tuple<string, string>> {
-                    new Tuple<string, string>("submit_button", "Wireless_Basic"),
-                    new Tuple<string, string>("action", "Apply"),
-                    new Tuple<string, string>("change_action", "gozila_cgi"),
-                    new Tuple<string, string>("submit_type", "save"),
-                    new Tuple<string, string>("wl0_nctrlsb", ""),
-                    new Tuple<string, string>("wl1_nctrlsb", ""),
-                    new Tuple<string, string>("iface", ""),
-                    new Tuple<string, string>("wl0_mode", "ap"),
-                    new Tuple<string, string>("wl0_net_mode", "mixed"), 
-                    new Tuple<string, string>("wl0_ssid", ssid),
-                    new Tuple<string, string>("wl0_channel", "6"),
-
-                    new Tuple<string, string>("wl0_closed", "0")
-                }
-            );
-
-            _ssid = ssid;
-        }
-
-        public override void ChangeWifiPassword(string password)
-        {
-
             SendToRouter("/apply.cgi",
 
-                new List<Tuple<string, string>> {
+    new List<Tuple<string, string>> {
                     new Tuple<string, string>("Authorization", "Basic cm9vdDphZG1pbg==")
                  },
 
-                new List<Tuple<string, string>> {
+    new List<Tuple<string, string>> {
                     new Tuple<string, string>("submit_button", "WL_WPATable"),
-                    new Tuple<string, string>("action", "Apply"),
+                    new Tuple<string, string>("action", "ApplyTake"),
                     new Tuple<string, string>("change_action", "gozila_cgi"),
                     new Tuple<string, string>("submit_type", "save"),
                     new Tuple<string, string>("security_varname", ""),
@@ -152,7 +123,42 @@ namespace EasyRouter.Models
                     new Tuple<string, string>("wl0_wpa_gtk_rekey", "3600")
                 });
 
+
+            SendToRouter("/apply.cgi",
+
+                            new List<Tuple<string, string>> {
+                    new Tuple<string, string>("Authorization", "Basic cm9vdDphZG1pbg==")
+                 },
+
+                            new List<Tuple<string, string>> {
+                    new Tuple<string, string>("submit_button", "Wireless_Basic"),
+                    new Tuple<string, string>("action", "ApplyTake"),
+                    new Tuple<string, string>("change_action", "gozila_cgi"),
+                    new Tuple<string, string>("submit_type", "save"),
+                    new Tuple<string, string>("wl0_nctrlsb", ""),
+                    new Tuple<string, string>("wl1_nctrlsb", ""),
+                    new Tuple<string, string>("iface", ""),
+                    new Tuple<string, string>("wl0_mode", "ap"),
+                    new Tuple<string, string>("wl0_net_mode", "mixed"), 
+                    new Tuple<string, string>("wl0_ssid", ssid),
+                    new Tuple<string, string>("wl0_channel", "6"),
+
+                    new Tuple<string, string>("wl0_closed", "0")
+                }
+                        );
+
+
+        }
+
+        public override void ChangeSSID(string ssid)
+        {
+            _ssid = ssid;
+        }
+
+        public override void ChangeWifiPassword(string password)
+        {
             _password = password;
+            SetSSIDAndPassword(_ssid, _password);
         }
 
         public override string GetSSID()

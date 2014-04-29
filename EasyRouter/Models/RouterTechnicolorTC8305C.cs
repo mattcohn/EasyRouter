@@ -35,7 +35,6 @@ namespace EasyRouter.Models
             SendToRouter("/goform/home_loggedout",
 
                 new List<Tuple<string, string>> {
-                //    new Tuple<string, string>("Cookie", "CenturyLink=sdk4_12_2_3g; showLoginPass=null") 
                 },
 
 
@@ -102,14 +101,14 @@ namespace EasyRouter.Models
 
         public override void ChangeSSID(string ssid)
         {
-            SetSSIDAndPassword(ssid, _password);
             _ssid = ssid;
+            //SetSSIDAndPassword(_ssid, _password);
         }
 
         public override void ChangeWifiPassword(string password)
         {
-            SetSSIDAndPassword(_ssid, password);
             _password = password;
+            SetSSIDAndPassword(_ssid, _password);
         }
 
         public override string GetSSID()

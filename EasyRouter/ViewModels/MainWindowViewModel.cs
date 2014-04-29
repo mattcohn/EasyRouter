@@ -39,11 +39,22 @@ namespace EasyRouter.ViewModels
                     NetworkInfo info = (NetworkInfo)sender;
                     IEnumerable<NetworkAdapter> netAdapters = info.GetNetworkAdapters();
                     IEnumerable<NetworkInterface> altNetAdapters = NetworkInterface.GetAllNetworkInterfaces();
-                    //netAdapters.First().GetGatewayAddress();
-                    var altNetAdaptersWorking = from adapter in altNetAdapters 
+                    var netAdaptersWorking = from adapter in altNetAdapters 
                                                 where adapter.OperationalStatus == System.Net.NetworkInformation.OperationalStatus.Up 
+                                                && adapter.NetworkInterfaceType != System.Net.NetworkInformation.NetworkInterfaceType.Loopback 
+                                                && adapter.NetworkInterfaceType != System.Net.NetworkInformation.NetworkInterfaceType.Tunnel
                                                 select adapter;
-                    GatewayIPAddressInformation g = altNetAdaptersWorking.First().GetIPProperties().GatewayAddresses.Last();
+                    
+                    GatewayIPAddressInformation g = null;
+
+                    try
+                    {
+                        g = netAdaptersWorking.First().GetIPProperties().GatewayAddresses.Last();
+                    }
+                    catch (Exception ) 
+                    { 
+                        //don't crash! 
+                    }
                     
 
                     if (netAdapters.Count() > 0 || g != null)

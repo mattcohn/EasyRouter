@@ -11,14 +11,25 @@ namespace EasyRouter.ViewModels
     {
         private Action
             _quickSetupAction,
-            _advancedConfigAciton,
-            _getHelpAction;
+            _advancedConfigAction,
+            _getHelpAction,
+            _resetAction;
 
-        public RouterConfigHomeViewModel(Action quickSetupAction, Action advancedConfigAction, Action getHelpAction)
+        public RouterConfigHomeViewModel(Action quickSetupAction, Action advancedConfigAction, Action getHelpAction, Action resetAction)
         {
             _quickSetupAction = quickSetupAction;
-            _advancedConfigAciton = advancedConfigAction;
+            _advancedConfigAction = advancedConfigAction;
             _getHelpAction = getHelpAction;
+            _resetAction = resetAction;
+        }
+
+        
+        public ICommand ResetCommand
+        {
+            get
+            {
+                return new DelegateCommand(new Action<object>((sender) => _resetAction()));
+            }
         }
 
         public ICommand QuickSetupCommand
@@ -33,7 +44,7 @@ namespace EasyRouter.ViewModels
         {
             get
             {
-                return new DelegateCommand(new Action<object>((sender) => _advancedConfigAciton()));
+                return new DelegateCommand(new Action<object>((sender) => _advancedConfigAction()));
             }
         }
 

@@ -10,19 +10,46 @@ namespace EasyRouter.ViewModels
 {
     class AdvancedConfigurationViewModel : ViewModelBase
     {
-        private Action
-            _resetAction;
-
-        public AdvancedConfigurationViewModel(Action resetAction)
+        public AdvancedConfigurationViewModel(Func<string> getNetworkName, Func<string> getNetworkPassword)
         {
-            _resetAction = resetAction;
+            NetworkName = getNetworkName();
+            NetworkPassword = getNetworkPassword();
         }
 
-        public ICommand ResetCommand
+        private string _networkName;
+        private string _networkPassword;
+
+        public string NetworkName
         {
             get
             {
-                return new DelegateCommand(new Action<object>((sender) => _resetAction()));
+                return _networkName;
+            }
+
+            set
+            {
+                if (_networkName != value)
+                {
+                    _networkName = value;
+                    OnPropertyChanged("NetworkName");
+                }
+            }
+        }
+
+        public string NetworkPassword
+        {
+            get
+            {
+                return _networkPassword;
+            }
+
+            set
+            {
+                if (_networkPassword != value)
+                {
+                    _networkPassword = value;
+                    OnPropertyChanged("NetworkPassword");
+                }
             }
         }
     }

@@ -6,8 +6,8 @@
              mc:Ignorable="d" 
              d:DesignHeight="314" d:DesignWidth="404">
     <StackPanel>
-        <Button Command="{Binding Path=QuickSetupCommand}" Margin="30, 10, 30, 10" Height="50" Content="Quick Setup" FontSize="24" Background="Orange"/>
-        <Button Command="{Binding Path=AdvancedConfigCommand}" Margin="30, 10, 30, 10" Height="50" Content="Advanced Configuration" FontSize="24" Background="Orange"/>
-        <Button Command="{Binding Path=GetHelpCommand}" Margin="30, 10, 30, 10" Height="50" Content="Get Help" FontSize="24" Background="Orange"/>
+        <Button Command="{Binding Path=QuickSetupCommand}" Margin="30, 30, 30, 10" Height="50" Content="Quick Setup" FontSize="24" Background="#FFFFB500" />
+        <Button Command="{Binding Path=AdvancedConfigCommand}" Margin="30, 10, 30, 10" Height="50" Content="Optimize your router" FontSize="24" Background="#FFFFB500" />
+        <Button Command="{Binding Path=ResetCommand}" Margin="30,35,30,10" Height="50" Content="Reset Router" FontSize="24" Background="Salmon" />
     </StackPanel>
 </UserControl>

@@ -7,10 +7,16 @@
              d:DesignHeight="314" d:DesignWidth="404">
     <StackPanel>
         <Image Source="/Content/EasyRouter8Top.jpg" />
-        <TextBlock FontSize="16">WiFi Name:</TextBlock>
-        <TextBox Text="{Binding Path=NetworkName, Mode=OneWay}"  Padding="3" Margin="5" Background="Orange" FontSize="20" />
-        <TextBlock FontSize="16">WiFi Password:</TextBlock>
-        <TextBox Text="{Binding Path=NetworkPassword, Mode=OneWay}"  Padding="3" Margin="5" Background="Orange" FontSize="20" />
-        <Button Command="{Binding Path=ResetCommand}" Margin="30,10,226,10" Height="50" Content="Reset Router" FontSize="20" Background="Orange" />
+        <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" FontSize="18" Text="Optimize for compatibility or speed" />
+        <DockPanel VerticalAlignment="Center">
+            <RadioButton IsEnabled="False" Margin="50, 10, 5, 5" Name="Compatibility" FontSize="20" Background="Gray" VerticalAlignment="Top" >Compatibility</RadioButton>
+            <RadioButton IsEnabled="False" Margin="50, 10, 5, 5" Name="Speed" FontSize="20" Background="Gray" VerticalAlignment="Top">Speed</RadioButton>
+        </DockPanel>
+        <DockPanel VerticalAlignment="Center">
+            <TextBlock Margin="70, 2, 2, 5" FontSize="14"  VerticalAlignment="Top" >all wireless devices </TextBlock>
+            <TextBlock Margin="72, 2, 2, 5" FontSize="14"  VerticalAlignment="Top">802.11n+ only </TextBlock>
+        </DockPanel>
+        <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" FontSize="18" Text="Run a speed test to optimize your WiFi channel" />
+        <Button  Margin="30, 10, 30, 10" Height="50" Content="Optimize Channel (coming soon)" FontSize="20" Background="Gray" />
     </StackPanel>
 </UserControl>
