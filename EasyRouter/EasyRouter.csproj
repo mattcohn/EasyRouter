@@ -54,6 +54,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Models\RouterDDWRT.cs" />
+    <Compile Include="Models\RouterNetgearR6250.cs" />
     <Compile Include="Models\RouterTechnicolorTC8305C.cs" />
     <Compile Include="Models\RouterLinksysWRT54G2.cs" />
     <Compile Include="ViewModels\AdvancedConfigurationViewModel.cs" />
@@ -191,6 +192,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Content\WRT54G.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Content\NETGEAR_R6250.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

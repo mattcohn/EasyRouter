@@ -26,10 +26,13 @@ namespace EasyRouter.Models
         public abstract string GetSSID();
         public abstract void ChangeWifiPassword(string password);
         public abstract string GetWifiPassword();
+        public void RunSpeedTest()
+        {
+        }
 
         protected void SendToRouter(string path, IEnumerable<Tuple<string, string>> headers, IEnumerable<Tuple<string, string>> formData)
         {
-            HttpWebRequest hwr = WebRequest.CreateHttp(_requestUriString + path);
+            var hwr = HttpWebRequest.Create(_requestUriString + path);
             hwr.Method = "POST";
             hwr.ContentType = "application/x-www-form-urlencoded";
 

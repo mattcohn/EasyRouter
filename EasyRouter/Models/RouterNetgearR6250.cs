@@ -34,7 +34,7 @@ namespace EasyRouter.Models
 
         public override void Logon()
         {
-            SendToRouter("", "GET",
+            SendToRouter("",
 
                 new List<Tuple<string, string>> {
                     new Tuple<string, string>("Authorization", "Basic YWRtaW46cGFzc3dvcmQ=") },
@@ -48,60 +48,9 @@ namespace EasyRouter.Models
             throw new NotImplementedException();
         }
 
-        public override void RunSpeedTest()
-        {
-            
-            return;
-        }
-
-        protected void SendToRouter(string path, string httpVerb, IEnumerable<Tuple<string, string>> headers, IEnumerable<Tuple<string, string>> formData)
-        {
-            if (path.Length > 1 && !path.Substring(0, 1).Equals("/") ) path = "/" + path; // prepend leading / in url path
-
-            HttpWebRequest hwr = WebRequest.CreateHttp(_requestUriString + path);
-            hwr.Method = httpVerb;
-            hwr.ContentType = "application/x-www-form-urlencode";
-            //hwr.KeepAlive = true;
-            hwr.Headers["Authorization"] = "Basic OmFkbWlu";
-            hwr.Accept = "text/html, application/xhtml+xml";
-            hwr.Referer = "192.168.1.1/wireless.html";
-            hwr.CachePolicy = WebRequest.DefaultCachePolicy;
-            hwr.UserAgent = "Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.154 Safari/537.36";
-
-            foreach (Tuple<string, string> header in headers)
-            {
-                hwr.Headers[header.Item1] = header.Item2;
-            }
-
-            if (hwr.Method == "POST") { 
-               byte[] formBytes = GetFormData(formData);
-                hwr.ContentLength = formBytes.Length;
-
-                using (Stream stream = hwr.GetRequestStream())
-                {
-                    stream.Write(formBytes, 0, formBytes.Length);
-                }
-            }
-            try
-            {
-                WebResponse response = hwr.GetResponse();
-                using (Stream stream = response.GetResponseStream())
-                {
-                    StreamReader reader = new StreamReader(stream);
-                    string responseString = reader.ReadToEnd();
-                }
-            }
-            catch(WebException)
-            {
-
-            }
-
-
-        }
-
         public override void ChangeSSID(string ssid)
         {
-            SendToRouter("WBasic.tri", "POST",
+            SendToRouter("WBasic.tri",
 
                 new List<Tuple<string, string>> {
                     new Tuple<string, string>("Authorization", "Basic OmFkbWlu")
@@ -127,7 +76,7 @@ namespace EasyRouter.Models
 
         public override void ChangeWifiPassword(string password)
         {
-            SendToRouter("Security.tri", "POST",
+            SendToRouter("Security.tri",
 
                 new List<Tuple<string, string>> { },
 

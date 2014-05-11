@@ -52,15 +52,11 @@ namespace EasyRouter.Models
         {
             if (path.Length > 1 && !path.Substring(0, 1).Equals("/") ) path = "/" + path; // prepend leading / in url path
 
-            HttpWebRequest hwr = WebRequest.CreateHttp(_requestUriString + path);
+            var hwr = HttpWebRequest.Create(_requestUriString + path);
             hwr.Method = httpVerb;
             hwr.ContentType = "application/x-www-form-urlencode";
-            //hwr.KeepAlive = true;
+            
             hwr.Headers["Authorization"] = "Basic OmFkbWlu";
-            hwr.Accept = "text/html, application/xhtml+xml";
-            hwr.Referer = "192.168.1.1/wireless.html";
-            hwr.CachePolicy = WebRequest.DefaultCachePolicy;
-            hwr.UserAgent = "Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.154 Safari/537.36";
 
             foreach (Tuple<string, string> header in headers)
             {

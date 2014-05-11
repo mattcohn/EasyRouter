@@ -54,7 +54,7 @@ namespace EasyRouter.Models
 
         private static Router GetRouter(string address)
         {
-            HttpWebRequest req = WebRequest.CreateHttp(address);
+            var req = HttpWebRequest.Create(address);
             string respText = "";
             try
             {
